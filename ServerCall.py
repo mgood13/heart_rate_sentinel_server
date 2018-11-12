@@ -6,7 +6,7 @@ def main():
                "user_age": 40}
     r2 = requests.post("http://127.0.0.1:5000/api/new_patient", json=patient)
     distance_result = r2.json()
-    print(distance_result)
+    print(type(distance_result))
 
 
 if __name__ == "__main__":
