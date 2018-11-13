@@ -3,6 +3,7 @@ from PatientDatabase import Patient
 import datetime
 
 app = Flask(__name__)
+masterlist = {}
 
 
 @app.route("/hello/<name>", methods=["GET"])
@@ -14,8 +15,13 @@ def hello(name):
 @app.route("/api/new_patient", methods=["POST"])
 def new_patient():
     # Places a new patient into the database
-    temp = request.get_json()
-    patient = temp.json()
+    errormessage = "Patient already Exists"
+    patient = request.get_json()
+    uniqueid = patient["patient_id"]
+    if str(uniqueid) in masterlist:
+        print(errormessage)
+        return jsonify(errormessage)
+
     createdpatient = make_new_patient(patient)
     return jsonify(createdpatient)
 
@@ -72,10 +78,11 @@ def make_new_patient(patient):
     newtemppatient = Patient(patient_id=uniqueid,
                              attending_email=patient["attending_email"],
                              user_age=patient["user_age"])
-    newtemppatient.save()
-    #print("Welcome Patient {}".format(uniqueid))
-    for user in Patient.objects.raw({}):
-        print(user.patient_id)
+    # Hang onto this for if we get a database up and running
+    # newtemppatient.save()
+    masterlist[str(uniqueid)] = newtemppatient
+    for key in masterlist:
+        print(masterlist[key].patient_id)
     return patient
 
 
