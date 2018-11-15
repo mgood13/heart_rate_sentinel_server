@@ -8,3 +8,5 @@ class Patient(MongoModel):
     patient_id = fields.CharField(primary_key=True)
     attending_email = fields.EmailField()
     user_age = fields.CharField()
+    hrlist = fields.ListField()
+    timelist = fields.ListField()
