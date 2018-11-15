@@ -23,10 +23,11 @@ def new_patient():
     else:
         return message
 
+
 @app.route("/api/heart_rate", methods=["POST"])
 def heart_rate():
     value = 2
-    # Sets the current heart rate for a given patient (also needs a time?)
+    # Sets the current heart rate for a given patient
     hrset = request.get_json()
     message, checked = error_check(hrset, value)
     if checked:
@@ -36,17 +37,22 @@ def heart_rate():
         return message
 
 
-
-
-
 @app.route("/api/status/<patient_id>", methods=["GET"])
 def status(patient_id):
     value = 3
     # Tells whether the patient is tachycardic or not and gives
     # the time of the previous recording
-
-    status, time = getstatus(patient_id)
-    return status, time
+    temppatient = {}
+    temppatient["patient_id"] = patient_id
+    message, checked = error_check(temppatient, value)
+    if checked:
+        currentstatus, time = getstatus(patient_id)
+        printedresponse = "Patient is {}".format(currentstatus) +\
+                          ". Measured at {}".format(time)
+        print(printedresponse)
+        return jsonify(printedresponse)
+    else:
+        return message
 
 
 @app.route("/api/heart_rate/<patient_id>", methods=["GET"])
@@ -92,6 +98,24 @@ def error_check(patient, value):
         expectedlist = ["patient_id", "attending_email", "user_age"]
     if value == 2:
         expectedlist = ["patient_id", "heart_rate"]
+    if value == 3:
+        try:
+            if str(uniqueid) not in masterlist and value > 1:
+                raise ValueError
+        except ValueError:
+            errormessage = jsonify("Patient does not exist")
+            error = False
+        if error:
+            try:
+                if not masterlist[str(uniqueid)].hrlist:
+                    raise ValueError
+
+            except ValueError:
+                errormessage = jsonify("Patient has no recorded Heart Rate!")
+                error = False
+
+        return errormessage, error
+
     try:
         for i in expectedlist:
             if i not in keylist:
@@ -101,14 +125,15 @@ def error_check(patient, value):
         error = False
     try:
         if str(uniqueid) in masterlist and value == 1:
+            print("HELLO")
             raise ValueError
     except ValueError:
-        errormessage = "Patient " + str(uniqueid) + " " + alreadypatient
+        errormessage = jsonify("Patient " + str(uniqueid) + " " + alreadypatient)
         error = False
     try:
         if str(uniqueid) not in masterlist and value > 1:
             raise ValueError
-    except:
+    except ValueError:
         errormessage = jsonify("Patient does not exist")
         error = False
     try:
@@ -118,7 +143,7 @@ def error_check(patient, value):
     except ValueError:
         error = False
         errormessage = jsonify("Heart Rate is out of bounds")
-    print
+
     return errormessage, error
 
 
@@ -143,24 +168,24 @@ def set_heart_rate(hrset):
     # Place the given heart rate in the heart rate list
     fullhrlist = temppatient.hrlist
     fulltimelist = temppatient.timelist
-    temp = fullhrlist.append(hrset["heart_rate"])
-    temppatient.hrlist = temp
+    temppatient.hrlist.append(hrset["heart_rate"])
     # Place the current time in the time list
     currenttime = datetime.datetime.now()
-    temp = fulltimelist.append(currenttime)
-    temppatient.timelist = temp
+    temppatient.timelist.append(currenttime)
     return currenttime
 
 
-
 def getstatus(patient_id):
-    temppatient = Patient.objects.raw({"_id": patient_id})
+    print(patient_id)
+    print(type(patient_id))
+    temppatient = masterlist[patient_id]
     allhr = temppatient.hrlist
+    print("allhr")
+    print(allhr)
     alltime = temppatient.timelist
-    age = temppatient.user_age
-    numhr = len(allhr)
-    currenthr = allhr[numhr-1]
-    currenttime = alltime[numhr-1]
+    age = int(temppatient.user_age)
+    currenthr = allhr[-1]
+    currenttime = alltime[-1]
     status = check_status(currenthr, age)
 
     return status, currenttime
