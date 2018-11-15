@@ -9,9 +9,13 @@ def main():
     print(distance_result)
 
     patient2 = {"patient_id": 3,
-                "heart_rate": 40}
+                "heart_rate": 200}
     r3 = requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient2)
     distance_result = r3.json()
+    print(distance_result)
+
+    r4 = requests.get("http://127.0.0.1:5000/api/status/3")
+    distance_result = r4.json()
     print(distance_result)
 
 
