@@ -3,6 +3,7 @@ from PatientDatabase import Patient
 import datetime
 import requests
 
+
 def test_new_patient():
     """ This funciton tests whether the new patient function is working
 
@@ -37,7 +38,7 @@ def test_heart_rate():
     :return:
     """
     patient = {"patient_id": 1,
-                "heart_rate": 100}
+               "heart_rate": 100}
     r3 = requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient)
     result = r3.json()
     assert result == "Heart Rate Added"
@@ -71,8 +72,7 @@ def test_status():
     r4 = requests.get("http://127.0.0.1:5000/api/status/2")
     time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     result = r4.json()
-    assert result == "Patient is Not Tachycardic" +\
-           ". Measured at {}".format(time)
+    assert result == "Patient is Not Tachycardic" + ". Measured at {}".format(time)
 
     patient3 = {"patient_id": 2,
                 "heart_rate": 150}
@@ -80,13 +80,11 @@ def test_status():
     r4 = requests.get("http://127.0.0.1:5000/api/status/2")
     time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     result = r4.json()
-    assert result == "Patient is Tachycardic" +\
-           ". Measured at {}".format(time)
+    assert result == "Patient is Tachycardic" + ". Measured at {}".format(time)
 
     r4 = requests.get("http://127.0.0.1:5000/api/status/17")
     result = r4.json()
     assert result == "Patient does not exist"
-
 
 
 def test_heart_rate_full():
@@ -132,7 +130,7 @@ def test_heart_rate_average():
     assert result == "Patient has no recorded Heart Rate!"
 
 
-#def test_interval_average():
+# def test_interval_average():
 #    """
 #
 #    :return:
@@ -158,7 +156,6 @@ def test_heart_rate_average():
 
 def test_make_new_patient():
     return True
-
 
 
 def test_set_heart_rate():

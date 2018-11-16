@@ -1,5 +1,7 @@
 import requests
 import datetime
+
+
 def main():
     patient1 = {"patient_id": 1,
                 "attending_email": "michael.good11@me.com",
@@ -31,6 +33,7 @@ def main():
                              datetime.datetime(2018, 11, 16, 15, 10, 50, 725354),
                              datetime.datetime(2018, 11, 16, 15, 10, 50, 834356)]}
     requests.post("http://127.0.0.1:5000/api/new_patient", json=patient1)
+
 
 if __name__ == "__main__":
     main()

@@ -3,9 +3,9 @@ from PatientDatabase import Patient
 import datetime
 
 
-
 app = Flask(__name__)
 masterlist = {}
+
 
 @app.route("/api/new_patient", methods=["POST"])
 def new_patient():
@@ -128,8 +128,6 @@ def heart_rate_average(patient_id):
         return message
 
 
-
-
 @app.route("/api/heart_rate/interval_average", methods=["POST"])
 def interval_average():
     """Function that calculates average heart rate since an input time
@@ -149,7 +147,6 @@ def interval_average():
     index = index_finder(uniqueid, desiredtime)
     hraverage = hr_averager(uniqueid, index)
     return hraverage
-
 
 
 def error_check(patient, value):
