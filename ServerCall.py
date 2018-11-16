@@ -1,52 +1,37 @@
 import requests
 import datetime
 def main():
+    patient1 = {"patient_id": 1,
+                "attending_email": "michael.good11@me.com",
+                "user_age": 5}
+    patient2 = {"patient_id": 2,
+                "attending_email": "michael.good11@me.com",
+                "user_age": 7}
+    patient3 = {"patient_id": 3,
+                "attending_email": "michael.good11@me.com",
+                "user_age": 100}
+    patient4 = {"patient_id": 4,
+                "attending_email": "michael.good11@me.com",
+                "user_age": 30}
+    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient1)
+    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient2)
+    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient3)
+    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient4)
 
-    patient = {"patient_id": 3,
-               "attending_email": "mgood10@jhu.edu",
-               "user_age": 40}
-    r2 = requests.post("http://127.0.0.1:5000/api/new_patient", json=patient)
-    distance_result = r2.json()
-    print(distance_result)
+    patient3 = {"patient_id": 1,
+                "heart_rate": 120}
+    requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient3)
 
-    patient2 = {"patient_id": 3,
-                "heart_rate": 100}
-    r3 = requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient2)
-    distance_result = r3.json()
-    print(distance_result)
-    patient2 = {"patient_id": 3,
-                "heart_rate": 100}
-    r3 = requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient2)
-    distance_result = r3.json()
-    print(distance_result)
-    patient2 = {"patient_id": 3,
-                "heart_rate": 100}
-    r3 = requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient2)
-    distance_result = r3.json()
-    print(distance_result)
-
-    r7 = requests.get("http://127.0.0.1:5000/api/heart_rate/average/3")
-    avg = r7.json()
-    print(avg)
-
-
-    #r4 = requests.get("http://127.0.0.1:5000/api/status/3")
-    #distance_result = r4.json()
-    #print(distance_result)
-
-    #r6 = requests.get("http://127.0.0.1:5000/api/heart_rate/3")
-    #message = r5.json()
-    #result = r6.json()
-    #print(result)
-    #print(message)
-    sincetime = datetime.datetime(2018, 11, 15, 18, 16, 40, 0)
-    patient2 = {"patient_id": 3,
-                "heart_rate_average_since": str(sincetime)}
-    r8 = requests.post("http://127.0.0.1:5000/api/heart_rate/interval_average", json=patient2)
-    distance_result = r3.json()
-    print(distance_result)
-
-
+    patient200 = {"patient_id": 200,
+                "attending_email": "michael.good11@me.com",
+                "user_age": 30,
+                "hrlist": [200, 100, 120, 110],
+                "timelist": [datetime.datetime(2018, 11, 16, 15, 10, 45, 469586),
+                             datetime.datetime(2018, 11, 16, 15, 10, 50, 669845),
+                             datetime.datetime(2018, 11, 16, 15, 10, 50, 725354),
+                             datetime.datetime(2018, 11, 16, 15, 10, 50, 834356)]}
+    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient1)
 
 if __name__ == "__main__":
     main()
+
