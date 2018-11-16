@@ -1,6 +1,8 @@
 from flask import request, Flask, jsonify
 from PatientDatabase import Patient
 import datetime
+import maya
+
 
 app = Flask(__name__)
 masterlist = {}
@@ -49,7 +51,6 @@ def status(patient_id):
         currentstatus, time = getstatus(patient_id)
         printedresponse = "Patient is {}".format(currentstatus) +\
                           ". Measured at {}".format(time)
-        print(printedresponse)
         return jsonify(printedresponse)
     else:
         return message
@@ -59,28 +60,38 @@ def status(patient_id):
 def heart_rate_full(patient_id):
     value = 4
     # Returns all previous heart rate measurements for the patient
-    hrlist = get_hr(patient_id)
-    return hrlist
+    temppatient = {}
+    temppatient["patient_id"] = patient_id
+    message, checked = error_check(temppatient, value)
+    if checked:
+        hrlist = get_hr(patient_id)
+        printedresponse = "Patient {}".format(patient_id) + \
+                          " all heart rate values:" + str(hrlist)
+        return jsonify(printedresponse)
+    else:
+        return message
 
 
 @app.route("/api/heart_rate/average/<patient_id>", methods=["GET"])
 def heart_rate_average(patient_id):
-     value = 5
-     # Gives the average of all of the patient's HR data
-     hraverage = hr_averager(patient_id)
-     return hraverage
+    value = 5
+    # Gives the average of all of the patient's HR data
+    hraverage = hr_averager(patient_id)
+    return hraverage
 
 
 @app.route("/api/heart_rate/interval_average", methods=["POST"])
 def interval_average():
     value = 6
     # Gives average heart rate since the given time
-    temp = request.get_json()
-    patienttime = temp.json()
+    patienttime = request.get_json()
+
     uniqueid = patienttime["patient_id"]
     desiredtime = patienttime["heart_rate_average_since"]
     index = index_finder(uniqueid, desiredtime)
-    hr_averager(uniqueid, index)
+    hraverage = hr_averager(uniqueid, index)
+    return hraverage
+
 
 
 def error_check(patient, value):
@@ -98,7 +109,7 @@ def error_check(patient, value):
         expectedlist = ["patient_id", "attending_email", "user_age"]
     if value == 2:
         expectedlist = ["patient_id", "heart_rate"]
-    if value == 3:
+    if value == 3 or value == 4 or value == 5:
         try:
             if str(uniqueid) not in masterlist and value > 1:
                 raise ValueError
@@ -125,7 +136,6 @@ def error_check(patient, value):
         error = False
     try:
         if str(uniqueid) in masterlist and value == 1:
-            print("HELLO")
             raise ValueError
     except ValueError:
         errormessage = jsonify("Patient " + str(uniqueid) + " " + alreadypatient)
@@ -176,12 +186,8 @@ def set_heart_rate(hrset):
 
 
 def getstatus(patient_id):
-    print(patient_id)
-    print(type(patient_id))
     temppatient = masterlist[patient_id]
     allhr = temppatient.hrlist
-    print("allhr")
-    print(allhr)
     alltime = temppatient.timelist
     age = int(temppatient.user_age)
     currenthr = allhr[-1]
@@ -209,7 +215,7 @@ def check_status(currenthr, age):
 
 
 def get_hr(patient_id):
-    temppatient = Patient.objects.raw({"_id": patient_id})
+    temppatient = masterlist[str(patient_id)]
     fullhrlist = temppatient.hrlist
     return fullhrlist
 
@@ -220,16 +226,18 @@ def hr_averager(patient_id, index = 0):
     hrlen = len(fullhrlist)
     for val in range(index, hrlen-1):
         total = fullhrlist[val] + total
-    hravg = total/hrlen
-    return hravg
+    hravg = round(total/hrlen,2)
+    return str(hravg)
 
 
 def index_finder(patient_id, time):
     index = 0
-    temppatient = Patient.objects.raw({"_id": patient_id})
+    temppatient = masterlist[str(patient_id)]
     fulltimelist = temppatient.timelist
+    newtime = datetime.datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
+    print(type(newtime))
     for x in fulltimelist:
-        if time < x:
+        if newtime < x:
             break
         index += 1
     return index
