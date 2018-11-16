@@ -25,16 +25,18 @@ def main():
     requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient3)
 
     patient200 = {"patient_id": 200,
-                "attending_email": "michael.good11@me.com",
-                "user_age": 30,
-                "hrlist": [200, 100, 120, 110],
-                "timelist": [datetime.datetime(2018, 11, 16, 15, 10, 45, 469586),
-                             datetime.datetime(2018, 11, 16, 15, 10, 50, 669845),
-                             datetime.datetime(2018, 11, 16, 15, 10, 50, 725354),
-                             datetime.datetime(2018, 11, 16, 15, 10, 50, 834356)]}
+                  "attending_email": "michael.good11@me.com",
+                  "user_age": 30,
+                  "hrlist": [200, 100, 120, 110]"timelist":
+                      [datetime.datetime(2018, 11, 16, 15, 10, 45, 469586),
+                             datetime.datetime(2018, 11, 16, 15, 10,
+                                               50, 669845),
+                             datetime.datetime(2018, 11, 16, 15, 10,
+                                               50, 725354),
+                             datetime.datetime(2018, 11, 16, 15, 10,
+                                               50, 834356)]}
     requests.post("http://127.0.0.1:5000/api/new_patient", json=patient1)
 
 
 if __name__ == "__main__":
     main()
-

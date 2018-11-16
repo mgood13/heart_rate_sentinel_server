@@ -62,7 +62,7 @@ def status(patient_id):
     their age. It also returns the time of that last measurement
 
     :param patient_id: The patient's ID number
-    :return printedresponse: String containing patient status and time of last recording
+    :return printedresponse: Patient status and time of last recording
     :return message: Error message about how the status checking failed
     """
     value = 3
@@ -89,7 +89,7 @@ def heart_rate_full(patient_id):
 
     :param patient_id: The Patient's ID number
     :return printed response: String containing the full HR list
-    :return message: Error message indicating what went wrong getting the hr list
+    :return message: Error message what went wrong getting the hr list
     """
     value = 4
     # Returns all previous heart rate measurements for the patient
@@ -114,7 +114,7 @@ def heart_rate_average(patient_id):
 
     :param patient_id: Patient's ID number
     :return hraverage: The patient's average heart rate
-    :return message: Error message indicating what went wrong averaging the heart rate
+    :return message: Error message what went wrong averaging the heart rate
     """
     value = 5
     # Gives the average of all of the patient's HR data
@@ -158,8 +158,8 @@ def error_check(patient, value):
     whether a given patient exists, etc.
 
     :param patient: The created patient whose data is being acted upon
-    :param value: An integer indicating which function is calling the errorchecker
-    :return errormessage: A string which describes the exact error that occurred
+    :param value: Which function is calling the errorchecker
+    :return errormessage: The exact error that occurred
     :return error: A boolean indicating whether an error was deteced.
     """
     keylist = []
@@ -205,7 +205,8 @@ def error_check(patient, value):
         if str(uniqueid) in masterlist and value == 1:
             raise ValueError
     except ValueError:
-        errormessage = jsonify("Patient " + str(uniqueid) + " " + alreadypatient)
+        errormessage = jsonify("Patient " + str(uniqueid) +
+                               " " + alreadypatient)
         error = False
     try:
         if str(uniqueid) not in masterlist and value > 1:
@@ -215,7 +216,7 @@ def error_check(patient, value):
         error = False
     try:
         if "heart_rate" in keylist:
-            if patient["heart_rate"] > 220 or  patient["heart_rate"] < 10:
+            if patient["heart_rate"] > 220 or patient["heart_rate"] < 10:
                 raise ValueError
     except ValueError:
         error = False
@@ -278,13 +279,14 @@ def getstatus(patient_id):
     :return status: The patient's tachycardic status
     :return currenttime: The current time measured from the last HR recording.
     """
+
     temppatient = masterlist[patient_id]
     allhr = temppatient.hrlist
     alltime = temppatient.timelist
     age = int(temppatient.user_age)
     currenthr = allhr[-1]
     currenttime = alltime[-1]
-    status = check_status(currenthr, age)
+    status, emailstatus = check_status(currenthr, age)
 
     return status, currenttime
 
@@ -299,20 +301,28 @@ def check_status(currenthr, age):
     :param age: The patient's age
     :return status: Whether the patient is tachycardic or not
     """
+    emailsend = False
     status = "Not Tachycardic"
     if age == 1 or age == 2 and currenthr > 151:
         status = "Tachycardic"
+        emailsend = True
     elif age == 3 or age == 4 and currenthr > 137:
         status = "Tachycardic"
+        emailsend = True
     elif age >= 5 and age <= 7 and currenthr > 133:
         status = "Tachycardic"
+        emailsend = True
     elif age >= 8 and age <= 11 and currenthr > 130:
         status = "Tachycardic"
+        emailsend = True
     elif age >= 12 and age <= 15 and currenthr > 119:
         status = "Tachycardic"
+        emailsend = True
     elif age > 15 and currenthr > 100:
         status = "Tachycardic"
-    return status
+        emailsend = True
+
+    return status, emailsend
 
 
 def get_hr(patient_id):
@@ -329,7 +339,7 @@ def get_hr(patient_id):
     return fullhrlist
 
 
-def hr_averager(patient_id, index = 0):
+def hr_averager(patient_id, index=0):
     """Function that averages all of a given patient's heart rate values
 
     :param patient_id: The patient's ID number
@@ -344,7 +354,7 @@ def hr_averager(patient_id, index = 0):
     for val in range(index, hrlen):
         total = fullhrlist[val] + total
         print(total)
-    hravg = round(total/hrlen,2)
+    hravg = round(total/hrlen, 2)
     return str(hravg)
 
 
