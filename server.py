@@ -278,13 +278,14 @@ def getstatus(patient_id):
     :return status: The patient's tachycardic status
     :return currenttime: The current time measured from the last HR recording.
     """
+
     temppatient = masterlist[patient_id]
     allhr = temppatient.hrlist
     alltime = temppatient.timelist
     age = int(temppatient.user_age)
     currenthr = allhr[-1]
     currenttime = alltime[-1]
-    status = check_status(currenthr, age)
+    status, emailstatus = check_status(currenthr, age)
 
     return status, currenttime
 
@@ -299,20 +300,28 @@ def check_status(currenthr, age):
     :param age: The patient's age
     :return status: Whether the patient is tachycardic or not
     """
+    emailsend = False
     status = "Not Tachycardic"
     if age == 1 or age == 2 and currenthr > 151:
         status = "Tachycardic"
+        emailsend = True
     elif age == 3 or age == 4 and currenthr > 137:
         status = "Tachycardic"
+        emailsend = True
     elif age >= 5 and age <= 7 and currenthr > 133:
         status = "Tachycardic"
+        emailsend = True
     elif age >= 8 and age <= 11 and currenthr > 130:
         status = "Tachycardic"
+        emailsend = True
     elif age >= 12 and age <= 15 and currenthr > 119:
         status = "Tachycardic"
+        emailsend = True
     elif age > 15 and currenthr > 100:
         status = "Tachycardic"
-    return status
+        emailsend = True
+
+    return status, emailsend
 
 
 def get_hr(patient_id):
