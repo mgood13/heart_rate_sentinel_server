@@ -12,7 +12,8 @@ def test_new_patient():
 
     :return:
     """
-    ideal = {'attending_email': 'michael.good11@me.com', 'patient_id': 5, 'user_age': 40}
+    ideal = {'attending_email': 'michael.good11@me.com',
+             'patient_id': 5, 'user_age': 40}
     errormessage = "Patient 5 Already Exists"
     patient = {"patient_id": 5,
                "attending_email": "michael.good11@me.com",
@@ -72,7 +73,8 @@ def test_status():
     r4 = requests.get("http://127.0.0.1:5000/api/status/2")
     time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     result = r4.json()
-    assert result == "Patient is Not Tachycardic" + ". Measured at {}".format(time)
+    assert result == "Patient is Not Tachycardic" +\
+        ". Measured at {}".format(time)
 
     patient3 = {"patient_id": 2,
                 "heart_rate": 150}
@@ -138,14 +140,16 @@ def test_heart_rate_average():
 #    sincetime = datetime.datetime(2018, 11, 16, 15, 10, 40, 0)
 #    patient2 = {"patient_id": 3,
 #                "heart_rate_average_since": str(sincetime)}
-#    r8 = requests.post("http://127.0.0.1:5000/api/heart_rate/interval_average", json=patient2)
+#    r8 = requests.post("http://127.0.0.1:5000/api/heart_rate/
+#   interval_average", json=patient2)
 #    result = r8.json()
 #    assert result == 132.5
 
 #    sincetime = datetime.datetime(2018, 11, 16, 15, 10, 47, 0)
 #    patient2 = {"patient_id": 3,
 #                "heart_rate_average_since": str(sincetime)}
-#    r8 = requests.post("http://127.0.0.1:5000/api/heart_rate/interval_average", json=patient2)
+#    r8 = requests.post("http://127.0.0.1:5000/api/heart_rate/
+#   interval_average", json=patient2)
 #    result = r8.json()
 #    assert result == 110
 
