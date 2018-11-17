@@ -157,11 +157,9 @@ def clear():
     or if the user just wants to start over.
 
     """
-
-    for item in masterlist:
-        del masterlist[item]
-
+    masterlist.clear()
     return True
+
 
 def error_check(patient, value):
     """The error checking function for the server
