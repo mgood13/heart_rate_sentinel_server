@@ -3,6 +3,13 @@ import datetime
 
 
 def main():
+    """This function prepares the server with test cases
+
+    Running this function will add example patients to the dictionary on the
+    server which are later used for the functionality testing.
+
+    :return:
+    """
     patient1 = {"patient_id": 1,
                 "attending_email": "michael.good11@me.com",
                 "user_age": 5}
