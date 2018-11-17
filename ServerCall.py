@@ -10,6 +10,7 @@ def main():
 
     :return:
     """
+    requests.get("http://vcm-7453.vm.duke.edu:5000/api/clear")
     patient1 = {"patient_id": 1,
                 "attending_email": "michael.good11@me.com",
                 "user_age": 5}
