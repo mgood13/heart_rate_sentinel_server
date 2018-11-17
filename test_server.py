@@ -5,9 +5,8 @@ import requests
 from ServerCall import testpriming
 
 
-
 def test_new_patient():
-    """ This funciton tests whether the new patient function is working
+    """ This function tests whether the new patient function is working
 
     This function compares the given patient with an example for what
     the output should look like.
@@ -148,6 +147,8 @@ def test_heart_rate_average():
     assert result == "Patient has no recorded Heart Rate!"
 
 
+# Couldn't figure out a way to actually test this without
+# knowing when the program would be run
 # def test_interval_average():
 #    """
 #
