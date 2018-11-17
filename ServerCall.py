@@ -3,6 +3,13 @@ import datetime
 
 
 def main():
+    """This function prepares the server with test cases
+
+    Running this function will add example patients to the dictionary on the
+    server which are later used for the functionality testing.
+
+    :return:
+    """
     patient1 = {"patient_id": 1,
                 "attending_email": "michael.good11@me.com",
                 "user_age": 5}
@@ -27,7 +34,8 @@ def main():
     patient200 = {"patient_id": 200,
                   "attending_email": "michael.good11@me.com",
                   "user_age": 30,
-                  "hrlist": [200, 100, 120, 110]"timelist":
+                  "hrlist": [200, 100, 120, 110],
+                  "timelist":
                       [datetime.datetime(2018, 11, 16, 15, 10, 45, 469586),
                              datetime.datetime(2018, 11, 16, 15, 10,
                                                50, 669845),
