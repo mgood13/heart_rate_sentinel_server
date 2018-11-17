@@ -149,6 +149,18 @@ def interval_average():
     return hraverage
 
 
+@app.route("/api/clear", methods=["GET"])
+def clear():
+    """This function clears out the dictionary.
+
+    This function can be used to reset the server to run testing
+    or if the user just wants to start over.
+
+    """
+
+    for item in masterlist:
+        del masterlist[item]
+
 def error_check(patient, value):
     """The error checking function for the server
 
