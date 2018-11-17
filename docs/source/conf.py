@@ -14,8 +14,12 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
-
+sys.path.insert(0, os.path.abspath('/Users/Michael/Documents/Old_Desktop'
+                                   '/Duke/Fall_2018/590.06/'
+                                   'heart_rate_sentinel_server/source'))
+sys.path.insert(0, os.path.abspath('/Users/Michael/Documents/Old_Desktop'
+                                   '/Duke/Fall_2018/590.06/'
+                                   'heart_rate_sentinel_server'))
 
 # -- Project information -----------------------------------------------------
 

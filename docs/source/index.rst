@@ -9,6 +9,9 @@ Welcome to BME590HR_Sentinel_Server's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   heart_rate_sentinel_server/server
+   heart_rate_sentinel_server/ServerCall
+   heart_rate_sentinel_server/test_server
 
 
 
