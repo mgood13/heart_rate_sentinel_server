@@ -18,14 +18,16 @@ def test_new_patient():
     patient = {"patient_id": 5,
                "attending_email": "michael.good11@me.com",
                "user_age": 40}
-    r1 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/new_patient", json=patient)
+    r1 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/new_patient",
+                       json=patient)
     result = r1.json()
     assert result == ideal
 
     patient = {"patient_id": 5,
                "attending_email": "michael.good11@me.com",
                "user_age": 40}
-    r1 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/new_patient", json=patient)
+    r1 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/new_patient",
+                       json=patient)
     result = r1.json()
     assert result == errormessage
 
@@ -40,19 +42,22 @@ def test_heart_rate():
     """
     patient = {"patient_id": 1,
                "heart_rate": 100}
-    r3 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate", json=patient)
+    r3 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+                       json=patient)
     result = r3.json()
     assert result == "Heart Rate Added"
 
     patient2 = {"patient_id": 1,
                 "heart_rate": 400}
-    r4 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate", json=patient2)
+    r4 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+                       json=patient2)
     result = r4.json()
     assert result == "Heart Rate is out of bounds"
 
     patient3 = {"patient_id": 17,
                 "heart_rate": 100}
-    r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate", json=patient3)
+    r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+                       json=patient3)
     result = r5.json()
     assert result == "Patient does not exist"
 
@@ -66,9 +71,11 @@ def test_status():
 
     :return:
     """
+    # Travis passes things too slowly to accurately perform this test.
     patient3 = {"patient_id": 2,
                 "heart_rate": 120}
-    r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate", json=patient3)
+    r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+                       json=patient3)
 
     r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
     time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -78,7 +85,8 @@ def test_status():
 
     patient3 = {"patient_id": 2,
                 "heart_rate": 150}
-    r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate", json=patient3)
+    r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+                       json=patient3)
     r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
     time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     result = r4.json()
@@ -99,7 +107,8 @@ def test_heart_rate_full():
     """
     patient3 = {"patient_id": 2,
                 "heart_rate": 180}
-    r = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate", json=patient3)
+    r = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+                      json=patient3)
     r5 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/heart_rate/2")
     result = r5.json()
     assert result == "Patient 2 all heart rate values:[120, 150, 180]"
@@ -119,15 +128,18 @@ def test_heart_rate_average():
     This function tests the heart rate average function. It also checks
     for all of the potential error cases.
     """
-    r5 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/heart_rate/average/1")
+    r5 = requests.get("http://vcm-7453.vm.duke.edu:5000"
+                      "/api/heart_rate/average/1")
     result = r5.json()
     assert result == 110
 
-    r5 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/heart_rate/average/15")
+    r5 = requests.get("http://vcm-7453.vm.duke.edu:5000"
+                      "/api/heart_rate/average/15")
     result = r5.json()
     assert result == "Patient does not exist"
 
-    r5 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/heart_rate/average/4")
+    r5 = requests.get("http://vcm-7453.vm.duke.edu:5000"
+                      "/api/heart_rate/average/4")
     result = r5.json()
     assert result == "Patient has no recorded Heart Rate!"
 
@@ -156,27 +168,3 @@ def test_heart_rate_average():
 # This test was covered completely in the above tests
 # def error_check():
 #     return True
-
-
-def test_make_new_patient():
-    return True
-
-
-def test_set_heart_rate():
-    return True
-
-
-def test_getstatus():
-    return True
-
-
-def test_get_hr():
-    return True
-
-
-def test_hr_averager():
-    return True
-
-
-def test_index_finder():
-    return True

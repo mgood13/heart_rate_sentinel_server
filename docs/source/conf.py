@@ -131,7 +131,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'BME590HR_Sentinel_Server.tex', u'BME590HR\\_Sentinel\\_Server Documentation',
+    (master_doc, 'BME590HR_Sentinel_Server.tex',
+     u'BME590HR\\_Sentinel\\_Server Documentation',
      u'Michael Good', 'manual'),
 ]
 
@@ -141,7 +142,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'bme590hr_sentinel_server', u'BME590HR_Sentinel_Server Documentation',
+    (master_doc, 'bme590hr_sentinel_server',
+     u'BME590HR_Sentinel_Server Documentation',
      [author], 1)
 ]
 
@@ -152,7 +154,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'BME590HR_Sentinel_Server', u'BME590HR_Sentinel_Server Documentation',
+    (master_doc, 'BME590HR_Sentinel_Server',
+     u'BME590HR_Sentinel_Server Documentation',
      author, 'BME590HR_Sentinel_Server', 'One line description of project.',
      'Miscellaneous'),
 ]
