@@ -83,14 +83,14 @@ def test_status():
 
     patient3 = {"patient_id": 2,
                 "heart_rate": 120}
-    r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
-                       json=patient3)
+    #r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+    #                   json=patient3)
 
-    r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
-    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    result = r4.json()
-    assert result == "Patient is Not Tachycardic" + \
-           ". Measured at {}".format(time)
+    #r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
+    #time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    #result = r4.json()
+    #assert result == "Patient is Not Tachycardic" + \
+    #       ". Measured at {}".format(time)
 
     r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
     time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
