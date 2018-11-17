@@ -73,9 +73,6 @@ def test_status():
 
     :return:
     """
-    # Travis passes things too slowly to accurately perform this test.
-
-
     patient9 = {"patient_id": 2,
                 "heart_rate": 150}
     r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
@@ -83,6 +80,8 @@ def test_status():
 
     patient3 = {"patient_id": 2,
                 "heart_rate": 120}
+
+    # Travis passes things too slowly to accurately perform this test.
     #r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
     #                   json=patient3)
 
