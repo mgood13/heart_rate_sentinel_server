@@ -161,6 +161,8 @@ def clear():
     for item in masterlist:
         del masterlist[item]
 
+    return True
+
 def error_check(patient, value):
     """The error checking function for the server
 

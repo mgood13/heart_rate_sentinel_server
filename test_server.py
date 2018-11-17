@@ -2,6 +2,8 @@ from flask import request, Flask, jsonify
 from PatientDatabase import Patient
 import datetime
 import requests
+from ServerCall import testpriming
+
 
 
 def test_new_patient():
@@ -12,6 +14,7 @@ def test_new_patient():
 
     :return:
     """
+    testpriming()
     ideal = {'attending_email': 'michael.good11@me.com',
              'patient_id': 5, 'user_age': 40}
     errormessage = "Patient 5 Already Exists"
