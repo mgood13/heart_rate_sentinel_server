@@ -81,20 +81,20 @@ def test_status():
     patient3 = {"patient_id": 2,
                 "heart_rate": 120}
 
-    # Travis passes things too slowly to accurately perform this test.
-    #r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
+    # Travis passes things too slowly to accurately perform these tests.
+    # r5 = requests.post("http://vcm-7453.vm.duke.edu:5000/api/heart_rate",
     #                   json=patient3)
 
-    #r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
-    #time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    #result = r4.json()
-    #assert result == "Patient is Not Tachycardic" + \
+    # r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
+    # time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # result = r4.json()
+    # assert result == "Patient is Not Tachycardic" + \
     #       ". Measured at {}".format(time)
 
-    r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
-    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    result = r4.json()
-    assert result == "Patient is Tachycardic" + ". Measured at {}".format(time)
+    # r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/2")
+    # time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # result = r4.json()
+    # assert result == "Patient is Tachycardic" + ". Measured at {}".format(time)
 
     r4 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/status/17")
     result = r4.json()
@@ -115,7 +115,7 @@ def test_heart_rate_full():
                       json=patient3)
     r5 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/heart_rate/2")
     result = r5.json()
-    assert result == "Patient 2 all heart rate values:[120, 150, 180]"
+    assert result == "Patient 2 all heart rate values:[150, 120, 180]"
 
     r5 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/heart_rate/4")
     result = r5.json()
