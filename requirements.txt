@@ -6,4 +6,5 @@ flask
 requests
 ipython
 pymodm
-maya
+mock
+html5lib

@@ -27,7 +27,8 @@ def main():
     patient200 = {"patient_id": 200,
                   "attending_email": "michael.good11@me.com",
                   "user_age": 30,
-                  "hrlist": [200, 100, 120, 110]"timelist":
+                  "hrlist": [200, 100, 120, 110],
+                  "timelist":
                       [datetime.datetime(2018, 11, 16, 15, 10, 45, 469586),
                              datetime.datetime(2018, 11, 16, 15, 10,
                                                50, 669845),
