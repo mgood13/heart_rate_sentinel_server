@@ -59,7 +59,7 @@ def status(patient_id):
 
     This function takes in a patient ID number and then checks if their
     most recently recorded heart rate value is tachycardic depending upon
-    their age. It also returns the time of that last measurement
+    their age. It also returns the time of that last measurement.
 
     :param patient_id: The patient's ID number
     :return printedresponse: Patient status and time of last recording
