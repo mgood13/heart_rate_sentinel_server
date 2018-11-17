@@ -3,6 +3,10 @@ import datetime
 
 
 def main():
+    testpriming()
+
+
+def testpriming():
     """This function prepares the server with test cases
 
     Running this function will add example patients to the dictionary on the
@@ -10,7 +14,7 @@ def main():
 
     :return:
     """
-    requests.get("http://vcm-7453.vm.duke.edu:5000/api/clear")
+    r1 = requests.get("http://vcm-7453.vm.duke.edu:5000/api/clear")
     patient1 = {"patient_id": 1,
                 "attending_email": "michael.good11@me.com",
                 "user_age": 5}
