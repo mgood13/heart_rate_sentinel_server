@@ -22,14 +22,14 @@ def main():
     patient4 = {"patient_id": 4,
                 "attending_email": "michael.good11@me.com",
                 "user_age": 30}
-    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient1)
-    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient2)
-    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient3)
-    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient4)
+    requests.post("http://0.0.0.0:5000/api/new_patient", json=patient1)
+    requests.post("http://0.0.0.0:5000/api/new_patient", json=patient2)
+    requests.post("http://0.0.0.0:5000/api/new_patient", json=patient3)
+    requests.post("http://0.0.0.0:5000/api/new_patient", json=patient4)
 
     patient3 = {"patient_id": 1,
                 "heart_rate": 120}
-    requests.post("http://127.0.0.1:5000/api/heart_rate", json=patient3)
+    requests.post("http://0.0.0.0:5000/api/heart_rate", json=patient3)
 
     patient200 = {"patient_id": 200,
                   "attending_email": "michael.good11@me.com",
@@ -43,7 +43,7 @@ def main():
                                                50, 725354),
                              datetime.datetime(2018, 11, 16, 15, 10,
                                                50, 834356)]}
-    requests.post("http://127.0.0.1:5000/api/new_patient", json=patient1)
+    requests.post("http://0.0.0.0:5000/api/new_patient", json=patient1)
 
 
 if __name__ == "__main__":
