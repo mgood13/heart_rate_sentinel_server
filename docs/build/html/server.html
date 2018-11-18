@@ -1,0 +1,408 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>server module &#8212; BME590HR_Sentinel_Server v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-server">
+<span id="server-module"></span><h1>server module<a class="headerlink" href="#module-server" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="server.check_status">
+<code class="descclassname">server.</code><code class="descname">check_status</code><span class="sig-paren">(</span><em>currenthr</em>, <em>age</em><span class="sig-paren">)</span><a class="headerlink" href="#server.check_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fucntion that compares Age and HR to determine tachycardia</p>
+<p>This funciton uses a nest of if statements to determine whether
+the patient is tachycardic or not based upon their age.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>currenthr</strong> – The patient’s current heart rate value</li>
+<li><strong>age</strong> – The patient’s age</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return status:</th><td class="field-body"><p class="first last">Whether the patient is tachycardic or not</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.clear">
+<code class="descclassname">server.</code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function clears out the dictionary.</p>
+<p>This function can be used to reset the server to run testing
+or if the user just wants to start over.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.error_check">
+<code class="descclassname">server.</code><code class="descname">error_check</code><span class="sig-paren">(</span><em>patient</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#server.error_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>The error checking function for the server</p>
+<p>This function performs a variety of error checking functions for the
+different methods on the server. It determines if the correct number of
+items in a list were given, whether the values are in the proper bounds,
+whether a given patient exists, etc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>patient</strong> – The created patient whose data is being acted upon</li>
+<li><strong>value</strong> – Which function is calling the errorchecker</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return errormessage:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first">The exact error that occurred</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return error:</th><td class="field-body"><p class="first last">A boolean indicating whether an error was deteced.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.get_hr">
+<code class="descclassname">server.</code><code class="descname">get_hr</code><span class="sig-paren">(</span><em>patient_id</em><span class="sig-paren">)</span><a class="headerlink" href="#server.get_hr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns the full hr list</p>
+<p>This function takes the patient’s ID number and then returns their
+full list of HR measurements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>patient_id</strong> – The patient’s ID number</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return fullhrlist:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">A list of the patient’s heart rate values</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.getstatus">
+<code class="descclassname">server.</code><code class="descname">getstatus</code><span class="sig-paren">(</span><em>patient_id</em><span class="sig-paren">)</span><a class="headerlink" href="#server.getstatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that checks the patient’s tachycrdic status</p>
+<p>This function takes the patient’s ID number and then checks based upon
+the patient’s age and most recent heart rate information whether the
+patient is tachycardic or not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>patient_id</strong> – The patient’s ID number</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return status:</th><td class="field-body">The patient’s tachycardic status</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Return currenttime:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">The current time measured from the last HR recording.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.heart_rate">
+<code class="descclassname">server.</code><code class="descname">heart_rate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.heart_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for adding heart rate values</p>
+<p>This function adds heart rate values for a given patient
+Similar to above this sends the patient for error checking and then will
+either add the heart rate or return an error message.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return goodmessage:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Confirmation message for adding an HR value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return message:</th><td class="field-body">Error message about how the heart rate addition failed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.heart_rate_average">
+<code class="descclassname">server.</code><code class="descname">heart_rate_average</code><span class="sig-paren">(</span><em>patient_id</em><span class="sig-paren">)</span><a class="headerlink" href="#server.heart_rate_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that calculates the patient’s average heart rate</p>
+<p>This function takes the patient’s ID number and then returns the average
+heart rate or an error message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>patient_id</strong> – Patient’s ID number</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return hraverage:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">The patient’s average heart rate</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return message:</th><td class="field-body">Error message what went wrong averaging the heart rate</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.heart_rate_full">
+<code class="descclassname">server.</code><code class="descname">heart_rate_full</code><span class="sig-paren">(</span><em>patient_id</em><span class="sig-paren">)</span><a class="headerlink" href="#server.heart_rate_full" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns the entire heart rate list</p>
+<p>This function takes in the patient ID number and then returns the entire
+heart rate list for the patient.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>patient_id</strong> – The Patient’s ID number</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return printed response:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">String containing the full HR list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return message:</th><td class="field-body">Error message what went wrong getting the hr list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.hr_averager">
+<code class="descclassname">server.</code><code class="descname">hr_averager</code><span class="sig-paren">(</span><em>patient_id</em>, <em>index=0</em><span class="sig-paren">)</span><a class="headerlink" href="#server.hr_averager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that averages all of a given patient’s heart rate values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>patient_id</strong> – The patient’s ID number</li>
+<li><strong>index</strong> – The location at which to begin the averaging</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return hravg:</th><td class="field-body"><p class="first last">The average heart rate from the indicated point onwards</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.index_finder">
+<code class="descclassname">server.</code><code class="descname">index_finder</code><span class="sig-paren">(</span><em>patient_id</em>, <em>time</em><span class="sig-paren">)</span><a class="headerlink" href="#server.index_finder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that determines the index for the averager to start on</p>
+<p>This function takes the patient’s ID number and the input time and then
+computes the index for the heart rate average.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>patient_id</strong> – The patient’s ID number</li>
+<li><strong>time</strong> – The given time for comparison</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return index:</th><td class="field-body"><p class="first last">The index to start the averaging</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.interval_average">
+<code class="descclassname">server.</code><code class="descname">interval_average</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.interval_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that calculates average heart rate since an input time</p>
+<p>This function takes user input along with the patient ID number. The
+program then sends these values off to calculate the heart rate since the
+given input time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return hraverage:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">The patient’s average heart rate since the given time</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.make_new_patient">
+<code class="descclassname">server.</code><code class="descname">make_new_patient</code><span class="sig-paren">(</span><em>patient</em><span class="sig-paren">)</span><a class="headerlink" href="#server.make_new_patient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that creates a new patient</p>
+<p>This function takes in a dictionary of information given by the user
+and then creates a patient with that information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>patient</strong> – The input dictionary with patient information</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return patient:</th><td class="field-body">Returns the patient that was created</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.new_patient">
+<code class="descclassname">server.</code><code class="descname">new_patient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.new_patient" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the input call and creates a new patient</p>
+<p>This function is a post function that is called from a separate program.
+It requires three different input values: patient_id, attending
+email, and patient age
+It first sends all of the new patients into the error checker function.
+Then the function returns either an error message or the created patient.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return createdpatient:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">A dictionary with the created patient</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return message:</th><td class="field-body">An error message about how the patient creation failed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.set_heart_rate">
+<code class="descclassname">server.</code><code class="descname">set_heart_rate</code><span class="sig-paren">(</span><em>hrset</em><span class="sig-paren">)</span><a class="headerlink" href="#server.set_heart_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that sets a patient’s heart rate</p>
+<p>This function takes a dictionary containing the patient’s ID and
+their heart rate and then adds the given heart rate value to the
+list in the Patient object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hrset</strong> – Dictionary containing patient ID and heart rate value</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return currenttime:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Returns the time of the heart rate measurement.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.status">
+<code class="descclassname">server.</code><code class="descname">status</code><span class="sig-paren">(</span><em>patient_id</em><span class="sig-paren">)</span><a class="headerlink" href="#server.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that determines if the patient has tachycardia</p>
+<p>This function takes in a patient ID number and then checks if their
+most recently recorded heart rate value is tachycardic depending upon
+their age. It also returns the time of that last measurement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>patient_id</strong> – The patient’s ID number</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return printedresponse:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Patient status and time of last recording</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return message:</th><td class="field-body">Error message about how the status checking failed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BME590HR_Sentinel_Server</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Michael Good.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.0+/89404eb</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/server.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
