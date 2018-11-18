@@ -252,8 +252,6 @@ def make_new_patient(patient):
                              user_age=patient["user_age"],
                              hrlist=[],
                              timelist=[])
-    # Hang onto this for if we get a database up and running
-    # newtemppatient.save()
     masterlist[str(uniqueid)] = newtemppatient
     return patient
 
